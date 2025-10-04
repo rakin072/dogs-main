@@ -256,13 +256,13 @@ const FriendsPage: React.FC = () => {
   // ];
 
   return (
-    <div className="relative min-h-screen bg-[#1A1A1C] text-gray-200 z-10">
+    <div className="relative h-screen bg-[#1A1A1C] text-gray-200 z-10 flex flex-col">
       <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-purple-900/20 to-transparent z-0"></div>
       <div className="absolute bottom-0 right-0 w-full h-64 bg-gradient-to-t from-blue-900/20 to-transparent z-0"></div>
-      <div className="relative z-10 w-full max-w-xl mx-auto flex flex-col h-full gap-4 pb-20 overflow-y-scroll hide-scrollbar px-4">
+      <div className="relative z-10 w-full max-w-xl mx-auto flex flex-col flex-1 gap-3 pb-20 overflow-y-auto hide-scrollbar px-4">
         {/* Header Section */}
-        <div className="mt-4 z-40 w-full">
-          <div className="mb-4 relative">
+        <div className="mt-2 z-40 w-full">
+          <div className="mb-3 relative">
             <div className="relative flex flex-col items-center">
               <img 
                 src={friendsImage} 
@@ -285,14 +285,14 @@ const FriendsPage: React.FC = () => {
           </div>
 
           {/* Invite Friends Card */}
-          <div className="w-full mb-4 transform transition-all duration-300 hover:scale-[1.02]">
+          <div className="w-full mb-3 transform transition-all duration-300 hover:scale-[1.02]">
             <div className="relative">
               <div className="relative bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-md rounded-xl border border-gray-700/50 shadow-xl overflow-hidden">
-                <div className="p-5">
+                <div className="p-4">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-4">
                       <div className="relative">
-                        <div className="w-16 h-16 rounded-full flex items-center justify-center">
+                        <div className="w-12 h-12 rounded-full flex items-center justify-center">
                           <img
                             src={telegramImage || "/placeholder.svg"}
                             alt="Invite Friends"
@@ -303,10 +303,10 @@ const FriendsPage: React.FC = () => {
                       </div>
                       <div>
                         <div className="flex items-center space-x-2">
-                          <p className="text-xl font-semibold text-white">
+                          <p className="text-lg font-semibold text-white">
                             Invite Friends
                           </p>
-                          <FaHandSparkles className="w-4 h-4 text-[#FEE9B3]" />
+                          <FaHandSparkles className="w-3 h-3 text-[#FEE9B3]" />
                         </div>
                         <div className="flex items-center space-x-2 mt-2">
                           <div className="px-3 py-1 bg-yellow-500/10  rounded-full border border-blue-700/30 flex items-center space-x-1">
@@ -328,7 +328,7 @@ const FriendsPage: React.FC = () => {
         <div className="flex items-center justify-center">
           <button
             onClick={() => setIsInviteModalOpen(true)}
-            className="relative text-white text-base w-full py-4 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 transition-all duration-300 shadow-lg shadow-purple-900/20 font-medium flex items-center justify-center space-x-2"
+            className="relative text-white text-base w-full py-3 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 transition-all duration-300 shadow-lg shadow-purple-900/20 font-medium flex items-center justify-center space-x-2"
           >
             <FaShare className="w-5 h-5 mr-2" />
             <span>Share with friends</span>
@@ -341,18 +341,18 @@ const FriendsPage: React.FC = () => {
         </div>
 
         {/* Direct share buttons */}
-        <div className="grid grid-cols-3 gap-3 w-full">
+        <div className="grid grid-cols-3 gap-2 w-full">
           {shareButtons.map((button, idx) => (
             <button
               key={idx}
               onClick={button.onClick}
-              className="flex flex-col items-center justify-center space-y-2 p-3 rounded-xl bg-gray-800/70 backdrop-blur-sm border border-gray-700/50 hover:bg-gray-700/70 transition-all duration-300 shadow-md"
+              className="flex flex-col items-center justify-center space-y-1 p-2 rounded-xl bg-gray-800/70 backdrop-blur-sm border border-gray-700/50 hover:bg-gray-700/70 transition-all duration-300 shadow-md"
             >
               <div
-                className="w-10 h-10 rounded-full flex items-center justify-center"
+                className="w-8 h-8 rounded-full flex items-center justify-center"
                 style={{ backgroundColor: button.color }}
               >
-                <span className="text-white">{button.icon}</span>
+                <span className="text-white text-sm">{button.icon}</span>
               </div>
               <span className="text-xs text-gray-300">{button.label}</span>
             </button>
@@ -362,8 +362,8 @@ const FriendsPage: React.FC = () => {
         {/* Friends list */}
         <div className="w-full relative">
           <div className="absolute -inset-[0.1px] bg-gradient-to-r from-purple-600/10 to-blue-600/10 rounded-xl blur-sm"></div>
-          <div className="relative bg-gray-900/80 backdrop-blur-md rounded-xl border border-gray-800/50 p-5 shadow-xl">
-            <div className="flex items-center justify-between mb-4">
+          <div className="relative bg-gray-900/80 backdrop-blur-md rounded-xl border border-gray-800/50 p-4 shadow-xl">
+            <div className="flex items-center justify-between mb-3">
               <div className="flex items-center space-x-3">
                 <div className="p-2 bg-gray-800 rounded-lg">
                   <FaUsers className="w-5 h-5 text-blue-400" />

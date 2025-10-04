@@ -343,12 +343,12 @@ const App: React.FC = () => {
   /* ───── render ───── */
 
   return (
-    <div className="telegram-webapp-container relative flex justify-center overflow-hidden">
+    <div className="telegram-webapp-container relative flex justify-center">
       {loading ? (
         <LoadingScreen />
       ) : (
         <>
-          <div className="relative w-full max-w-xl font-bold text-white z-50">
+          <div className="relative w-full max-w-xl font-bold text-white z-50 page-container">
             {activePage === "home" && (
               <div className="flex flex-col h-full max-h-full overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-purple-900/20 to-transparent z-0" />

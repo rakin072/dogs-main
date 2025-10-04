@@ -12,3 +12,28 @@
     animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
   }
 }
+
+/* Hide scrollbar for webkit browsers */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+}
+
+/* Ensure proper viewport handling for mobile */
+.telegram-webapp-container {
+  height: 100vh;
+  height: 100dvh; /* Dynamic viewport height for mobile browsers */
+  overflow: hidden;
+}
+
+/* Fix for pages to properly fill viewport */
+.page-container {
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}

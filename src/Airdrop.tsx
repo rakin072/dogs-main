@@ -112,14 +112,14 @@ const Airdrop: React.FC<AirdropProps> = () => {
   const dividedBalance = points / 10;
 
   return (
-    <div className="relative min-h-screen bg-[#1A1A1C] text-gray-200 z-10">
+    <div className="relative h-screen bg-[#1A1A1C] text-gray-200 z-10 flex flex-col">
       {/* Background gradient effects */}
       <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-purple-900/20 to-transparent z-0"></div>
-                <div className="absolute bottom-0 right-0 w-full h-64 bg-gradient-to-t from-blue-900/20 to-transparent z-0"></div>
+      <div className="absolute bottom-0 right-0 w-full h-64 bg-gradient-to-t from-blue-900/20 to-transparent z-0"></div>
 
-      <div className="relative z-10 w-full max-w-xl mx-auto flex flex-col min-h-screen px-5 py-6">
+      <div className="relative z-10 w-full max-w-xl mx-auto flex flex-col flex-1 overflow-y-auto px-5 py-4 pb-20">
         {/* Header */}
-        <div className="mb-6 relative">
+        <div className="mb-4 relative">
           <div className="relative flex flex-col items-center">
             <img 
               src={img2} 
@@ -142,8 +142,8 @@ const Airdrop: React.FC<AirdropProps> = () => {
         </div>
 
         {/* Wallet Balance Section */}
-        <div className="mb-4">
-          <h2 className="text-lg font-semibold text-white mb-3 flex items-center">
+        <div className="mb-3">
+          <h2 className="text-lg font-semibold text-white mb-2 flex items-center">
             <IoMdWallet className="w-5 h-5 mr-2 text-[#FEE9B3]" />
             Wallet Balance
           </h2>
@@ -175,7 +175,7 @@ const Airdrop: React.FC<AirdropProps> = () => {
               {/* ATM Balance Card */}
               <div className="relative group">
                 <div className="absolute -inset-[0.1px] bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-xl blur opacity-20 group-hover:opacity-50 transition duration-300"></div>
-                <div className="relative bg-gray-900/80 backdrop-blur-md rounded-xl border border-gray-800/50 p-5 shadow-xl">
+                <div className="relative bg-gray-900/80 backdrop-blur-md rounded-xl border border-gray-800/50 p-4 shadow-xl">
                   <div className="flex items-center justify-between mb-2">
                     <div className="text-sm text-gray-200">ATM Balance</div>
                     <div className="text-xs text-gray-300 bg-gray-800/70 px-2 py-1 rounded-full">
@@ -222,15 +222,15 @@ const Airdrop: React.FC<AirdropProps> = () => {
         </div>
 
         {/* Receiving Wallet Section */}
-        <div className="mb-10">
-          <h2 className="text-lg font-semibold text-white mb-3 flex items-center">
+        <div className="mb-6">
+          <h2 className="text-lg font-semibold text-white mb-2 flex items-center">
             <IoMdWallet className="w-5 h-5 mr-2 text-[#FEE9B3]" />
             Receiving Wallet
           </h2>
 
           <div className="relative group">
             <div className="absolute -inset-[0.1px] bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-xl blur opacity-20 group-hover:opacity-50 transition duration-300"></div>
-            <div className="relative bg-gray-900/80 backdrop-blur-md rounded-xl border border-gray-800/50 p-5 shadow-xl">
+            <div className="relative bg-gray-900/80 backdrop-blur-md rounded-xl border border-gray-800/50 p-4 shadow-xl">
               {walletAddress ? (
                 <div className="space-y-3">
                   <div className="flex items-center justify-between">
