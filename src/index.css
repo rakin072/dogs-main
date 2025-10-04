@@ -144,6 +144,132 @@ html, body {
   align-items: center;
 }
 
+/* Enhanced Daily Reward Button Animations */
+@keyframes reward-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.4), 0 0 40px rgba(236, 72, 153, 0.3), 0 0 60px rgba(249, 115, 22, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.6), 0 0 50px rgba(236, 72, 153, 0.5), 0 0 70px rgba(249, 115, 22, 0.4);
+  }
+}
+
+@keyframes reward-shimmer {
+  0% {
+    transform: translateX(-100%) skewX(-12deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-12deg);
+  }
+}
+
+@keyframes reward-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+}
+
+.daily-reward-button {
+  animation: reward-glow 3s ease-in-out infinite, reward-pulse 2s ease-in-out infinite;
+}
+
+.daily-reward-button:hover {
+  animation: reward-glow 1s ease-in-out infinite, reward-pulse 1s ease-in-out infinite;
+}
+
+.daily-reward-shimmer {
+  animation: reward-shimmer 2s ease-in-out infinite;
+}
+
+/* Enhanced Home Page Element Animations */
+@keyframes tap-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.3), 0 0 40px rgba(236, 72, 153, 0.2), 0 0 60px rgba(249, 115, 22, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(168, 85, 247, 0.5), 0 0 50px rgba(236, 72, 153, 0.4), 0 0 70px rgba(249, 115, 22, 0.3);
+  }
+}
+
+@keyframes progress-shine {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) skewX(-12deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-12deg);
+  }
+}
+
+@keyframes tap-pop {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes reward-pop {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+  }
+  25% {
+    transform: scale(1.1) rotate(-5deg);
+  }
+  75% {
+    transform: scale(1.1) rotate(5deg);
+  }
+}
+
+@keyframes float {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-200px) scale(1.2);
+  }
+}
+
+/* Apply animations to elements */
+.animate-tap-glow {
+  animation: tap-glow 3s ease-in-out infinite;
+}
+
+.animate-progress-shine {
+  background-size: 200% 100%;
+  animation: progress-shine 2s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+.animate-tap-pop {
+  animation: tap-pop 0.6s ease-in-out;
+}
+
+.animate-reward-pop {
+  animation: reward-pop 2s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 0.9s ease-out forwards;
+}
+
 /* Ensure standard appearance is defined alongside vendor-prefixed rules injected by preflight/build */
 button,
 input[type="button"],
