@@ -1,0 +1,203 @@
+@import url("https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lemonada:wght@300..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .animate-spin-slow {
+    animation: spin 5s linear infinite;
+  }
+
+  .animate-float {
+    animation: floatUp 1.5s ease-out forwards;
+  }
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-200px);
+  }
+}
+
+
+
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: black;
+}
+
+/* Ensure standard appearance is defined alongside vendor-prefixed rules injected by preflight/build */
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  appearance: button;
+}
+
+[type="search"] {
+  appearance: textfield;
+}
+
+.hide-scrollbar {
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+  display: none;
+}
+
+.click-animate {
+  animation: click-animate 2s ease-in-out infinite;
+}
+
+@keyframes click-animate {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.85);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+textarea {
+  font-family: "Roboto", sans-serif;
+  font-feature-settings: "pnum", "lnum";
+  font-variation-settings: "wght" 400;
+  font-size: 100%;
+  font-weight: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  margin: 0;
+  padding: 0;
+}
+
+@keyframes gradient-x {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes softbounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 8s ease infinite;
+}
+
+.shadow-purple {
+  box-shadow: 0 4px 20px -4px rgba(194, 88, 212, 0.3);
+}
+
+.shadow-purple-card {
+  box-shadow: 0 2px 12px rgba(194, 88, 212, 0.1);
+}
+
+.animate-softbounce {
+  animation: softbounce 2s ease-in-out infinite;
+}
+
+@keyframes softbounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes gradient-x {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-softbounce {
+  animation: softbounce 3s ease-in-out infinite;
+}
+
+.animate-gradient-x {
+  animation: gradient-x 3s ease infinite;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.shadow-purple {
+  box-shadow: 0 0 15px rgba(138, 43, 226, 0.3);
+}
+
+.shadow-purple-small {
+  box-shadow: 0 0 10px rgba(138, 43, 226, 0.2);
+}
+
+.shadow-purple-card {
+  box-shadow: 0 4px 6px -1px rgba(138, 43, 226, 0.1), 0 2px 4px -1px rgba(138, 43, 226, 0.06);
+}
+
+/* Particle animation */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  transition: transform 5s ease-out, opacity 5s ease-out;
+}
+
+.swiper-button-prev::after{
+  font-size: 20px !important;
+}
+.swiper-button-next::after{
+  font-size: 20px !important;
+}
