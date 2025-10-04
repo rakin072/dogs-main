@@ -343,24 +343,24 @@ const App: React.FC = () => {
   /* ───── render ───── */
 
   return (
-    <div className="relative flex justify-center min-h-screen">
+    <div className="telegram-webapp-container relative flex justify-center overflow-hidden">
       {loading ? (
         <LoadingScreen />
       ) : (
         <>
           <div className="relative w-full max-w-xl font-bold text-white z-50">
             {activePage === "home" && (
-              <div className="flex flex-col h-screen">
+              <div className="flex flex-col h-full max-h-full overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-purple-900/20 to-transparent z-0" />
                 <div className="absolute bottom-0 right-0 w-full h-64 bg-gradient-to-t from-blue-900/20 to-transparent z-0" />
-                <div className="bg-[#1A1A1C]">
+                <div className="bg-[#1A1A1C] flex-shrink-0">
                   <Header
                     setActivePage={setActivePage}
                     address={address}
                   />
                 </div>
 
-                <main className=" flex-1 overflow-auto pb-[70px] bg-[#1A1A1C]">
+                <main className="flex-1 flex flex-col justify-center items-center bg-[#1A1A1C] pb-[70px] overflow-hidden">
                   <TapSection toggleDailyLogin={toggleDailyLogin}/>
                   
                 </main>

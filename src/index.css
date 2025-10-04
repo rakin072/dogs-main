@@ -44,6 +44,65 @@ html {
 body {
   font-family: "Roboto", sans-serif;
   background-color: black;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Telegram Web App specific styles */
+html, body {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+#root {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* Ensure proper viewport handling for Telegram Web App */
+@media screen and (max-height: 600px) {
+  .tap-section-container {
+    gap: 2rem !important;
+  }
+  
+  .tap-area {
+    max-width: 280px !important;
+  }
+  
+  .progress-section {
+    margin-top: 1rem !important;
+  }
+}
+
+/* Additional responsive adjustments for very small screens */
+@media screen and (max-height: 500px) {
+  .tap-section-container {
+    gap: 1rem !important;
+  }
+  
+  .tap-area {
+    max-width: 240px !important;
+    margin-top: 1rem !important;
+  }
+  
+  .progress-section {
+    margin-top: 0.5rem !important;
+  }
+}
+
+/* Ensure no scrolling on the main container */
+.telegram-webapp-container {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
 /* Ensure standard appearance is defined alongside vendor-prefixed rules injected by preflight/build */
