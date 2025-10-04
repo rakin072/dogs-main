@@ -117,24 +117,24 @@ const Airdrop: React.FC<AirdropProps> = () => {
       <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-purple-900/20 to-transparent z-0"></div>
                 <div className="absolute bottom-0 right-0 w-full h-64 bg-gradient-to-t from-blue-900/20 to-transparent z-0"></div>
 
-      <div className="relative z-10 w-full max-w-xl mx-auto flex flex-col min-h-screen px-5 py-8">
+      <div className="relative z-10 w-full max-w-xl mx-auto flex flex-col min-h-screen px-5 py-6">
         {/* Header */}
-        <div className="mb-8 relative">
+        <div className="mb-6 relative">
           <div className="relative flex flex-col items-center">
             <img 
               src={img2} 
               alt="Wallet Header" 
-              className="w-full max-w-xs h-auto object-cover rounded-3xl shadow-lg mb-4"
+              className="w-full max-w-[200px] h-auto object-cover rounded-2xl shadow-lg mb-2"
               style={{ 
-                borderTopLeftRadius: '2.5rem', 
-                borderTopRightRadius: '2.5rem',
-                borderBottomLeftRadius: '2.5rem', 
-                borderBottomRightRadius: '2.5rem' 
+                borderTopLeftRadius: '1.5rem', 
+                borderTopRightRadius: '1.5rem',
+                borderBottomLeftRadius: '1.5rem', 
+                borderBottomRightRadius: '1.5rem' 
               }}
             />
-            <div className="flex items-center justify-center mt-1 space-x-1 bg-gray-800/50 px-3 py-1 rounded-full backdrop-blur-sm">
-              <FaInfoCircle className="w-4 h-4 text-[#FEE9B3]" />
-              <p className="text-sm text-gray-200">
+            <div className="flex items-center justify-center mt-1 space-x-1 bg-gray-800/50 px-2 py-1 rounded-full backdrop-blur-sm">
+              <FaInfoCircle className="w-3 h-3 text-[#FEE9B3]" />
+              <p className="text-xs text-gray-200">
                 Manage your mining rewards
               </p>
             </div>

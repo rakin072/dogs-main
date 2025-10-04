@@ -259,25 +259,25 @@ const FriendsPage: React.FC = () => {
     <div className="relative min-h-screen bg-[#1A1A1C] text-gray-200 z-10">
       <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-purple-900/20 to-transparent z-0"></div>
       <div className="absolute bottom-0 right-0 w-full h-64 bg-gradient-to-t from-blue-900/20 to-transparent z-0"></div>
-      <div className="relative z-10 w-full max-w-xl mx-auto flex flex-col h-full gap-6 pb-20 overflow-y-scroll hide-scrollbar px-4">
+      <div className="relative z-10 w-full max-w-xl mx-auto flex flex-col h-full gap-4 pb-20 overflow-y-scroll hide-scrollbar px-4">
         {/* Header Section */}
-        <div className="mt-8 z-40 w-full">
-          <div className="mb-6 relative">
+        <div className="mt-4 z-40 w-full">
+          <div className="mb-4 relative">
             <div className="relative flex flex-col items-center">
               <img 
                 src={friendsImage} 
                 alt="Friends Header" 
-                className="w-full max-w-xs h-auto object-cover rounded-3xl shadow-lg mb-4"
+                className="w-full max-w-[200px] h-auto object-cover rounded-2xl shadow-lg mb-2"
                 style={{ 
-                  borderTopLeftRadius: '2.5rem', 
-                  borderTopRightRadius: '2.5rem',
-                  borderBottomLeftRadius: '2.5rem', 
-                  borderBottomRightRadius: '2.5rem' 
+                  borderTopLeftRadius: '1.5rem', 
+                  borderTopRightRadius: '1.5rem',
+                  borderBottomLeftRadius: '1.5rem', 
+                  borderBottomRightRadius: '1.5rem' 
                 }}
               />
-              <div className="flex items-center justify-center mt-1 space-x-1 bg-gray-800/50 px-3 py-1 rounded-full backdrop-blur-sm">
-                <FaAward className="w-4 h-4 text-[#FEE9B3]" />
-                <p className="text-sm text-gray-300">
+              <div className="flex items-center justify-center mt-1 space-x-1 bg-gray-800/50 px-2 py-1 rounded-full backdrop-blur-sm">
+                <FaAward className="w-3 h-3 text-[#FEE9B3]" />
+                <p className="text-xs text-gray-300">
                   Earn ATM by inviting friends
                 </p>
               </div>
@@ -285,7 +285,7 @@ const FriendsPage: React.FC = () => {
           </div>
 
           {/* Invite Friends Card */}
-          <div className="w-full mb-6 transform transition-all duration-300 hover:scale-[1.02]">
+          <div className="w-full mb-4 transform transition-all duration-300 hover:scale-[1.02]">
             <div className="relative">
               <div className="relative bg-gradient-to-br from-gray-900/90 to-gray-800/90 backdrop-blur-md rounded-xl border border-gray-700/50 shadow-xl overflow-hidden">
                 <div className="p-5">

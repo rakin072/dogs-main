@@ -167,24 +167,24 @@ const LeaderboardPage: React.FC = () => {
       <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-purple-900/20 to-transparent z-0"></div>
       <div className="absolute bottom-0 right-0 w-full h-64 bg-gradient-to-t from-blue-900/20 to-transparent z-0"></div>
 
-      <div className="relative z-10 flex flex-col items-center pt-6 h-[94vh] overflow-y-scroll hide-scrollbar pb-16 px-4">
+      <div className="relative z-10 flex flex-col items-center pt-4 h-[94vh] overflow-y-scroll hide-scrollbar pb-16 px-4">
         {/* Header with glow effect */}
-        <div className="mb-6">
+        <div className="mb-4">
           <div className="flex flex-col items-center">
             <img 
               src={img3} 
               alt="Leaderboard Header" 
-              className="w-full max-w-xs h-auto object-cover rounded-3xl shadow-lg mb-4"
+              className="w-full max-w-[200px] h-auto object-cover rounded-2xl shadow-lg mb-2"
               style={{ 
-                borderTopLeftRadius: '2.5rem', 
-                borderTopRightRadius: '2.5rem',
-                borderBottomLeftRadius: '2.5rem', 
-                borderBottomRightRadius: '2.5rem' 
+                borderTopLeftRadius: '1.5rem', 
+                borderTopRightRadius: '1.5rem',
+                borderBottomLeftRadius: '1.5rem', 
+                borderBottomRightRadius: '1.5rem' 
               }}
             />
             <div className="flex items-center justify-center mt-1 space-x-1">
-              <FaTrophy className="w-4 h-4 text-[#FDF1B6]" />
-              <p className="text-sm text-gray-400">
+              <FaTrophy className="w-3 h-3 text-[#FDF1B6]" />
+              <p className="text-xs text-gray-400">
                 Top ATM Miners in the Cosmos
               </p>
             </div>

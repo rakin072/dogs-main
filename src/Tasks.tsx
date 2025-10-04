@@ -810,24 +810,24 @@ const TasksPage: React.FC<TasksPageProps> = ({
     <div className="relative min-h-screen bg-[#1A1A1C] z-10">
       <div className="absolute top-0 left-0 w-full h-64 bg-gradient-to-b from-purple-900/20 to-transparent z-0"></div>
       <div className="absolute bottom-0 right-0 w-full h-64 bg-gradient-to-t from-blue-900/20 to-transparent z-0"></div>
-      <div className="flex flex-col  pt-6 h-[94vh] overflow-y-scroll hide-scrollbar pb-16 ">
+      <div className="flex flex-col pt-4 h-[94vh] overflow-y-scroll hide-scrollbar pb-16 ">
         {/* Glowing Header */}
         <div className="flex flex-col items-center">
           <img 
             src={img4} 
             alt="Tasks Header" 
-            className="w-full max-w-xs h-auto object-cover rounded-3xl shadow-lg"
+            className="w-full max-w-[200px] h-auto object-cover rounded-2xl shadow-lg"
             style={{ 
-              borderTopLeftRadius: '2.5rem', 
-              borderTopRightRadius: '2.5rem',
-              borderBottomLeftRadius: '2.5rem', 
-              borderBottomRightRadius: '2.5rem' 
+              borderTopLeftRadius: '1.5rem', 
+              borderTopRightRadius: '1.5rem',
+              borderBottomLeftRadius: '1.5rem', 
+              borderBottomRightRadius: '1.5rem' 
             }}
           />
-          <div className="flex items-center justify-center mt-4 space-x-1">
-            <p className="text-sm text-gray-400 flex gap-2 text-center">
-              <BiTask className="w-4 h-4 text-[#FDF1B6]" />
-              Earn Rewards. Complete Tasks. <br /> Rise to the Top.
+          <div className="flex items-center justify-center mt-2 space-x-1">
+            <p className="text-xs text-gray-400 flex gap-1 text-center">
+              <BiTask className="w-3 h-3 text-[#FDF1B6]" />
+              Earn Rewards. Complete Tasks. Rise to the Top.
             </p>
           </div>
         </div>
