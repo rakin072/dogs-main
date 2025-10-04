@@ -360,7 +360,7 @@ const App: React.FC = () => {
                   />
                 </div>
 
-                <main className="flex-1 flex flex-col justify-center items-center bg-[#1A1A1C] pb-[70px] overflow-hidden">
+                <main className="flex-1 flex flex-col justify-center items-center bg-[#1A1A1C] pb-[70px] overflow-hidden px-2">
                   <TapSection toggleDailyLogin={toggleDailyLogin}/>
                   
                 </main>

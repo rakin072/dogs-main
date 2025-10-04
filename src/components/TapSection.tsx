@@ -103,7 +103,7 @@ export default function TapSection({ toggleDailyLogin }: TapSectionProps) {
   const barPct = (tapsRemaining / 1000) * 100;
 
   return (
-    <div className="tap-section-container flex flex-col gap-4 justify-center items-center w-full h-full px-4 animate-fade-in-up">
+    <div className="tap-section-container flex flex-col gap-3 justify-center items-center w-full h-full px-4 animate-fade-in-up">
       {/* ATM Balance - No Animation */}
       <div className="flex items-center justify-center relative gap-3">
         <div className="h-[48px] w-[48px] rounded-full flex items-center justify-center bg-gradient-to-br to-[#FEE9B3] via-[#342B48] from-[#FEE9B3] shadow-xl">
@@ -121,7 +121,7 @@ export default function TapSection({ toggleDailyLogin }: TapSectionProps) {
 
       {/* Tap Area - Animated, Glowing, Pulsing */}
       <div
-        className="tap-area relative w-full max-w-xs mt-6 rounded-full perspective-[800px] group"
+        className="tap-area relative w-full max-w-xs mt-4 rounded-full perspective-[800px] group"
         onClick={handleTap}
       >
         <div className="absolute inset-0 z-0 rounded-full bg-gradient-to-br from-yellow-400/30 via-orange-400/20 to-yellow-400/20 blur-xl group-hover:blur-2xl transition-all duration-300 animate-tap-glow" />
@@ -143,7 +143,7 @@ export default function TapSection({ toggleDailyLogin }: TapSectionProps) {
       </div>
 
       {/* Animated Progress Bar */}
-      <div className="progress-section flex flex-col gap-2 items-center w-full px-3">
+      <div className="progress-section flex flex-col gap-1 items-center w-full px-3">
         <div className="flex items-center gap-2 w-full max-w-[400px] px-3 py-2 bg-gray-900/80 rounded-full border-2 border-yellow-300/40 shadow-lg animate-fade-in">
           <div className="flex-1 h-4 bg-gray-800 rounded-full overflow-hidden relative">
             <div
