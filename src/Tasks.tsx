@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useRef, useState } from "react";
 import { BiTask } from "react-icons/bi";
-import { FaWallet, FaYoutube, FaTelegram, FaTwitter, FaGlobe, FaDiscord, FaPlay } from "react-icons/fa";
+import { FaWallet, FaYoutube, FaTelegram, FaTwitter, FaGlobe, FaDiscord } from "react-icons/fa";
 import { FaInstagram, FaTiktok } from "react-icons/fa6";
 import { TfiGift } from "react-icons/tfi";
 import { useUser } from "./UserContext";
@@ -9,12 +9,7 @@ import { useTonAddress, useTonConnectUI } from "@tonconnect/ui-react";
 import Modal from "./Modal";
 import { img4 } from "./images";
 
-// Declare the Moneteg SDK function globally
-declare global {
-  interface Window {
-    show_9468292: (options?: any) => Promise<void>;
-  }
-}
+// Removed ad SDK declaration as Watch Ads task is no longer used
 
 // Interface for TaskItem component props
 interface TaskItemProps {
@@ -94,7 +89,7 @@ const TaskItem: React.FC<TaskItemProps> = ({
         {status === "claimable" && onClaim && (
           <button
             onClick={onClaim}
-            className=" font-normal text-[14px] text-white px-2 py-1 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 transition-colors duration-300"
+            className="font-normal text-[14px] text-white px-3 py-1 rounded-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 transition-colors duration-300 shadow-md shadow-emerald-900/20 border border-emerald-400/30"
           >
             Claim
           </button>
@@ -396,7 +391,7 @@ const TasksPage: React.FC<TasksPageProps> = ({
         ...prevState,
         [taskKey]: "claimable"
       }));
-    }, 5000); // 5 seconds delay
+    }, 30000); // 30 seconds delay
   };
 
   // Function to handle claiming a task's reward
@@ -484,7 +479,7 @@ const TasksPage: React.FC<TasksPageProps> = ({
         ...prevState,
         [task.taskid.toString()]: "claimable"
       }));
-    }, 5000); // Adjust the delay as needed
+    }, 30000); // 30 seconds delay
   };
 
   // Function to handle claiming fetched tasks' rewards
@@ -580,41 +575,13 @@ const TasksPage: React.FC<TasksPageProps> = ({
     }
   };
 
-  // Function to handle Watch ADs task
-  const handleWatchAdsTask = async () => {
-    try {
-      // Check if the Moneteg SDK is available
-      if (typeof window.show_9468292 !== 'function') {
-        showAlert('Ad system is not available. Please try again later.');
-        return;
-      }
-
-      // Show the rewarded interstitial ad
-      await window.show_9468292().then(() => {
-        // User watched the ad successfully, give them the reward
-        setPoints(prev => prev + 500);
-        showAlert('Congratulations! You earned 500 ATMs for watching the ad!');
-      });
-    } catch (error) {
-      console.error('Error showing ad:', error);
-      showAlert('Failed to load ad. Please try again.');
-    }
-  };
+  // Removed Watch ADs handler
 
   // Function to render tasks based on the selected segment
   const renderTasks = () => {
     return (
       <>
         <div className="mt-6 p-4 space-y-4">
-          {/* Watch ADs & Earn Task - New task that can be done repeatedly */}
-          <TaskItem
-            icon={<FaPlay />}
-            title="Watch ADs & Earn"
-            reward={500}
-            status="not_started"
-            onClick={handleWatchAdsTask}
-          />
-
           {/* Hardcoded Tasks */}
           <TaskItem
             icon={<FaTelegram />}
