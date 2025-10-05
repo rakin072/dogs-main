@@ -391,7 +391,7 @@ const TasksPage: React.FC<TasksPageProps> = ({
         ...prevState,
         [taskKey]: "claimable"
       }));
-    }, 30000); // 30 seconds delay
+    }, 10000); // 10 seconds delay
   };
 
   // Function to handle claiming a task's reward
@@ -479,7 +479,7 @@ const TasksPage: React.FC<TasksPageProps> = ({
         ...prevState,
         [task.taskid.toString()]: "claimable"
       }));
-    }, 30000); // 30 seconds delay
+    }, 10000); // 10 seconds delay
   };
 
   // Function to handle claiming fetched tasks' rewards
@@ -613,7 +613,7 @@ const TasksPage: React.FC<TasksPageProps> = ({
             onClick={() =>
               handleTaskClick(
                 "task14",
-                "https://youtube.com/@atomium-game-arts?si=jV_vjxxmrdJV76lE"
+                "https://www.youtube.com/@johnycryptocarter"
               )
             }
             onClaim={() => handleTaskClaim("task14", "task14", 1000)}
