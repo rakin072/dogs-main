@@ -24,6 +24,7 @@ const Airdrop: React.FC<AirdropProps> = () => {
   const [newWalletAddress, setNewWalletAddress] = useState<string>("");
   const [modalMessage, setModalMessage] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isWithdrawing, setIsWithdrawing] = useState(false);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -110,6 +111,35 @@ const Airdrop: React.FC<AirdropProps> = () => {
 
   // Calculate the divided balance (divided by 10)
   const dividedBalance = points / 10;
+
+  const backendUrl = (import.meta as any).env?.VITE_BACKEND_URL || "http://localhost:5000";
+  const canWithdraw = !!walletAddress && dividedBalance >= 100 && !isWithdrawing;
+
+  const handleWithdraw = async () => {
+    if (!walletAddress) {
+      setModalMessage("Please set your receiving wallet address first.");
+      return;
+    }
+    if (dividedBalance < 100) {
+      setModalMessage("Minimum 100 DOGS required to withdraw.");
+      return;
+    }
+    try {
+      setIsWithdrawing(true);
+      const res = await fetch(`${backendUrl}/withdraw`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ address: walletAddress, amount: Math.floor(dividedBalance) })
+      });
+      const data = await res.json();
+      if (!res.ok || data.error) throw new Error(data.error || "Withdraw failed");
+      setModalMessage(`Withdrawal initiated. Tx: ${data.tx_hash || "pending"}`);
+    } catch (err: any) {
+      setModalMessage(err?.message || "Failed to withdraw. Please try again.");
+    } finally {
+      setIsWithdrawing(false);
+    }
+  };
 
   return (
     <div className="relative h-screen bg-[#1A1A1C] text-gray-200 z-10 flex flex-col">
@@ -214,6 +244,22 @@ const Airdrop: React.FC<AirdropProps> = () => {
                     <p className="text-sm text-gray-300">
                       Your total balance of {points.toLocaleString()} ATM will be divided by 10 for the real reward payout.
                     </p>
+                  </div>
+
+                  {/* Withdraw Action */}
+                  <div className="mt-3 flex items-center justify-between">
+                    <p className="text-xs text-gray-400">Minimum withdraw: 100 DOGS</p>
+                    <button
+                      onClick={handleWithdraw}
+                      disabled={!canWithdraw}
+                      className={`px-4 py-2 rounded-lg text-white text-sm font-medium transition-all duration-300 shadow-lg ${
+                        canWithdraw
+                          ? "bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700"
+                          : "bg-gray-700 cursor-not-allowed"
+                      }`}
+                    >
+                      {isWithdrawing ? "Processing..." : "Withdraw DOGS"}
+                    </button>
                   </div>
                 </div>
               </div>

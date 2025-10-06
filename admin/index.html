@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - TWS Vision</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .nav-item {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-item.active {
+            background: rgba(255, 255, 255, 0.2);
+            border-left: 4px solid white;
+        }
+
+        .page-content {
+            display: none;
+        }
+
+        .page-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .table-container {
+            overflow-x: auto;
+            border-radius: 12px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-box input {
+            padding: 12px 40px 12px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            width: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .search-box i {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            padding: 32px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge-success {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .badge-danger {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .badge-warning {
+            background: #fff3cd;
+            color: #856404;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <div class="w-64 gradient-bg text-white p-6">
+            <div class="mb-8">
+                <h1 class="text-2xl font-bold">TWS Admin</h1>
+                <p class="text-sm text-white/70">Management Panel</p>
+            </div>
+            
+            <nav class="space-y-2">
+                <div class="nav-item active p-4 rounded-lg" onclick="showPage('dashboard')">
+                    <i class="fas fa-home mr-3"></i>Dashboard
+                </div>
+                <div class="nav-item p-4 rounded-lg" onclick="showPage('users')">
+                    <i class="fas fa-users mr-3"></i>Users
+                </div>
+                <div class="nav-item p-4 rounded-lg" onclick="showPage('tasks')">
+                    <i class="fas fa-tasks mr-3"></i>Tasks
+                </div>
+                <div class="nav-item p-4 rounded-lg" onclick="showPage('withdraw')">
+                    <i class="fas fa-money-bill-wave mr-3"></i>Withdrawals
+                </div>
+                <div class="nav-item p-4 rounded-lg" onclick="showPage('info')">
+                    <i class="fas fa-info-circle mr-3"></i>Info & Settings
+                </div>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex-1 p-8 bg-gray-50">
+            <!-- Dashboard Page -->
+            <div id="dashboard" class="page-content active">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Dashboard Overview</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                    <div class="stat-card">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-500 text-sm mb-1">Total Users</p>
+                                <h3 class="text-3xl font-bold text-gray-800" id="totalUsers">0</h3>
+                            </div>
+                            <div class="stat-icon" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                <i class="fas fa-users text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-500 text-sm mb-1">Active Tasks</p>
+                                <h3 class="text-3xl font-bold text-gray-800" id="totalTasks">0</h3>
+                            </div>
+                            <div class="stat-icon" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                                <i class="fas fa-tasks text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-500 text-sm mb-1">Pending Withdrawals</p>
+                                <h3 class="text-3xl font-bold text-gray-800" id="totalWithdrawals">0</h3>
+                            </div>
+                            <div class="stat-icon" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                                <i class="fas fa-money-bill-wave text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-500 text-sm mb-1">Conversion Ratio</p>
+                                <h3 class="text-3xl font-bold text-gray-800" id="conversionRatio">1000</h3>
+                            </div>
+                            <div class="stat-icon" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                                <i class="fas fa-exchange-alt text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Quick Actions</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <button onclick="showPage('users')" class="btn-primary py-4">
+                            <i class="fas fa-users mr-2"></i>Manage Users
+                        </button>
+                        <button onclick="showPage('tasks')" class="btn-primary py-4">
+                            <i class="fas fa-tasks mr-2"></i>Manage Tasks
+                        </button>
+                        <button onclick="showPage('withdraw')" class="btn-primary py-4">
+                            <i class="fas fa-money-bill-wave mr-2"></i>View Withdrawals
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users Page -->
+            <div id="users" class="page-content">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">User Management</h2>
+                
+                <div class="card p-6 mb-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="search-box">
+                            <input type="text" id="searchUserId" placeholder="Search by User ID..." onkeyup="searchUsers()">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="search-box">
+                            <input type="text" id="searchUsername" placeholder="Search by Username..." onkeyup="searchUsers()">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="search-box">
+                            <input type="text" id="searchWallet" placeholder="Search by Wallet ID..." onkeyup="searchUsers()">
+                            <i class="fas fa-search"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="table-container">
+                        <table id="usersTable">
+                            <thead>
+                                <tr>
+                                    <th>User ID</th>
+                                    <th>Username</th>
+                                    <th>Wallet ID</th>
+                                    <th>Total Points</th>
+                                    <th>TWS Balance</th>
+                                    <th>Referrals</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersTableBody">
+                                <tr>
+                                    <td colspan="7" class="text-center py-8 text-gray-500">Loading users...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tasks Page -->
+            <div id="tasks" class="page-content">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Task Management</h2>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Current Tasks -->
+                    <div class="card p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Current Tasks</h3>
+                        <div id="tasksList" class="space-y-4">
+                            <p class="text-gray-500">Loading tasks...</p>
+                        </div>
+                    </div>
+
+                    <!-- Add New Task -->
+                    <div class="card p-6">
+                        <h3 class="text-xl font-bold text-gray-800 mb-4">Add New Task</h3>
+                        <form id="addTaskForm" class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Task Title</label>
+                                <input type="text" id="taskTitle" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Task Reward</label>
+                                <input type="number" id="taskReward" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Task Link</label>
+                                <input type="url" id="taskLink" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Task Image</label>
+                                <input type="file" id="taskImage" accept="image/*" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500" required>
+                            </div>
+                            <button type="submit" class="w-full btn-primary py-3">
+                                <i class="fas fa-plus mr-2"></i>Add Task
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Withdrawals Page -->
+            <div id="withdraw" class="page-content">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Withdrawal Management</h2>
+                
+                <div class="card p-6 mb-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Withdrawal Settings</h3>
+                    <div class="flex items-center gap-4">
+                        <div class="flex-1">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Minimum Withdrawal Limit (TWS)</label>
+                            <input type="number" id="withdrawalLimit" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        <button onclick="updateWithdrawalLimit()" class="btn-primary mt-6">
+                            <i class="fas fa-save mr-2"></i>Update Limit
+                        </button>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="p-6 border-b">
+                        <h3 class="text-xl font-bold text-gray-800">Pending Withdrawal Requests</h3>
+                    </div>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>User ID</th>
+                                    <th>Amount (TWS)</th>
+                                    <th>Wallet Address</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="withdrawalsTableBody">
+                                <tr>
+                                    <td colspan="5" class="text-center py-8 text-gray-500">Loading withdrawals...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info & Settings Page -->
+            <div id="info" class="page-content">
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">Info & Settings</h2>
+                
+                <!-- Conversion Ratio -->
+                <div class="card p-6 mb-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Conversion Ratio</h3>
+                    <p class="text-gray-600 mb-4">Set the conversion rate from MTWS to TWS (e.g., 1000 means 1000 MTWS = 1 TWS)</p>
+                    <div class="flex items-center gap-4">
+                        <input type="number" id="conversionRatioInput" class="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                        <button onclick="updateConversionRatio()" class="btn-primary">
+                            <i class="fas fa-save mr-2"></i>Update Ratio
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Exchange Rates -->
+                <div class="card p-6">
+                    <h3 class="text-xl font-bold text-gray-800 mb-4">Exchange Rates (TWS ↔ TON)</h3>
+                    <div class="mb-6" id="exchangeRatesList">
+                        <p class="text-gray-500">Loading exchange rates...</p>
+                    </div>
+                    
+                    <div class="border-t pt-6">
+                        <h4 class="text-lg font-semibold text-gray-800 mb-4">Add New Exchange Rate</h4>
+                        <div class="flex items-center gap-4">
+                            <input type="number" id="twsAmount" placeholder="TWS Amount" class="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                            <span class="text-gray-600 font-medium">=</span>
+                            <input type="number" id="tonAmount" placeholder="TON Amount" class="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+                            <button onclick="addExchangeRate()" class="btn-primary">
+                                <i class="fas fa-plus mr-2"></i>Add Rate
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html>
+
